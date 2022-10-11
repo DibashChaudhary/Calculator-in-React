@@ -136,6 +136,8 @@ body {
   }
   
   .prank{
+    background: red !important;
+    color: white;
     animation: prank 0.2s ease-in;
   }
   

@@ -5,11 +5,19 @@ import {BtnArea} from "./components/BtnArea"
 import './App.css';
 import { useState } from "react";
 
-const operator  =["*", "-", "+", "/"];
+const operator  =["%", "*", "-", "+", "/"];
 function App() {
 
 const [strToDisplay, setStrToDisplay] = useState("");
 const [lastOperator, setLastOperator] = useState("")
+
+const [prank , setPrank] = useState(false)
+
+const randomNumber = ()=>{
+  const num = Math.round(Math.random()*10)
+
+  return num ? num > 3 : num
+}
 
 
 const handleOnButtonClick = (val) =>{
@@ -28,8 +36,11 @@ const handleOnButtonClick = (val) =>{
     if(operator.includes(lastChar)){
       temStr = strToDisplay.slice(0, -1)
     }
+    const extra = randomNumber();
+    extra && setPrank(true);
+    const total = eval(temStr) + extra
 
-    return setStrToDisplay(eval(temStr).toString())
+    return setStrToDisplay(total.toString())
   }
 
   if (operator.includes(val)){
@@ -98,6 +109,9 @@ const handleOnButtonClick = (val) =>{
         <div className="btn btn-0">0</div>
         <div className="btn btn-dot">.</div>
         <div className="btn btn-equals">=</div> */}
+
+
+        
 
         <BtnArea handleOnButtonClick={handleOnButtonClick}/>
       </div>
